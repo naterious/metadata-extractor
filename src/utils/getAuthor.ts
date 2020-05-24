@@ -1,10 +1,10 @@
 import * as r from 'ramda';
-import { ICreatorDetails } from '../types';
+import { CreatorDetails } from '../types';
 
 // gets the author name from the creatorDetails
 // falls back to null value if any nested property
 // is not defined
-export const getAuthor = (creatorDetails: ICreatorDetails): string | null => {
+export const getAuthor = (creatorDetails: CreatorDetails): string | null => {
   if (r.isNil(creatorDetails)) {
     return null;
   }

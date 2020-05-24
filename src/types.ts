@@ -9,7 +9,7 @@ export interface IBookMetaData {
   licenseRights: string;
 }
 
-export type ICreatorDetails = [
+export type CreatorDetails = [
   {
     'pgterms:agent': [
       {
