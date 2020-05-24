@@ -14,7 +14,7 @@ This tool can be used to extract metadata from Project Gutenberg titles and stor
 6. run `yarn db:migrate`
 
 ## usage
-1. download Gutenberg titles archive from ​https://www.gutenberg.org/cache/epub/feeds/rdf-files.tar.zip​
+1. download Gutenberg titles archive from ​[here](http://www.gutenberg.org/cache/epub/feeds/rdf-files.tar.zip​)
 2. extract archive and place resulting 'cache' file at the root of this project
 3. to run the function against a single file run `yarn start /path/to/file` supplying the path to the rdf file you want to parse, for example: `yarn start /cache/epub/1/pg1`
 4. to run the function against all the rdf files run `yarn start` (this currently results in a js out of memory error, as there are too many records to process to the db, requires better management of files, or a least chunking the data into smaller blocks)
