@@ -1,5 +1,6 @@
 import glob from 'glob';
 import asyncPool from "tiny-async-pool";
+import * as r from 'ramda';
 
 import { readAndParseXmlFile } from './readAndParseXmlFile';
 import {addMetadataToDb} from './db';
@@ -9,7 +10,12 @@ const getAllFiles = (src: string) => {
 };
 
 const run = async () => {
-  const fileList = getAllFiles('cache');
+  const fileList = r.ifElse(
+    r.isNil,
+    () => getAllFiles('cache'),
+    (fileName: string) => ['.'+fileName+'.rdf'],
+  )(process.argv[2]);
+
   let promises = [];
 
   console.log('Starting to parse metadata')
