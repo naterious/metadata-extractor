@@ -1,0 +1,66 @@
+{
+  "name": "metadata-extractor",
+  "version": "1.0.0",
+  "description": "metadata extractor for project Gutenberg titles",
+  "main": "lib/index.js",
+  "repository": "git@github.com:naterious/metadata-extractor.git",
+  "author": "Nathan Taylor <nathantaylor49@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node -r dotenv/config lib/readAllFiles.js",
+    "test": "nyc mocha 'test/**/*.test.ts'",
+    "build": "tsc",
+    "db:create": "node -r dotenv/config database/create.js",
+    "db:drop": "node -r dotenv/config database/drop.js",
+    "db:migrate": "cd ./database && knex migrate:latest && cd ../",
+    "db:list": "cd ./database && knex migrate:list && cd ../",
+    "db:rollback": "cd ./database && knex migrate:down && cd ../",
+    "db:migrate:create": "yarn knex --knexfile ./database/knexfile.ts migrate:make ${migrationName} -x ts",
+    "docker:db:run": "docker run -p 3306:3306 --name some-sql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:5.7"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "glob": "^7.1.6",
+    "knex": "^0.21.1",
+    "mysql": "^2.18.1",
+    "ramda": "^0.27.0",
+    "sequelize": "^5.21.10",
+    "tiny-async-pool": "^1.1.0",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^7.0.2",
+    "@types/mysql": "^2.15.12",
+    "@types/ramda": "^0.27.6",
+    "@types/sinon": "^9.0.4",
+    "@types/tiny-async-pool": "^1.0.0",
+    "@types/xml2js": "^0.4.5",
+    "chai": "^4.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "6.2.3",
+    "nyc": "^15.0.1",
+    "sinon": "^9.0.2",
+    "ts-node": "^8.10.1",
+    "typescript": "3.8.2"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "lib",
+      "coverage",
+      "database"
+    ],
+    "reporter": [
+      "html",
+      "text-summary"
+    ],
+    "all": true
+  }
+}
