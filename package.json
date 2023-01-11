@@ -22,7 +22,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "glob": "^7.1.6",
-    "knex": "^0.21.1",
+    "knex": "^2.4.0",
     "mysql": "^2.18.1",
     "ramda": "^0.27.0",
     "tiny-async-pool": "^1.1.0",
